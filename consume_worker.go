@@ -1,4 +1,4 @@
-package main
+package bend_ingest_kafka
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"bend-ingest-kafka/config"
+	"github.com/cnwangjie/bend-ingest-kafka/config"
 )
 
 type ConsumeWorker struct {

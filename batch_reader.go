@@ -1,4 +1,4 @@
-package main
+package bend_ingest_kafka
 
 import (
 	"context"
@@ -9,8 +9,8 @@ import (
 	"github.com/segmentio/kafka-go"
 	"github.com/sirupsen/logrus"
 
-	"bend-ingest-kafka/config"
-	"bend-ingest-kafka/message"
+	"github.com/cnwangjie/bend-ingest-kafka/config"
+	"github.com/cnwangjie/bend-ingest-kafka/message"
 )
 
 type BatchReader interface {

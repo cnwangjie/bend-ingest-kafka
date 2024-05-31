@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
-	"strings"
 	"sync"
 	"syscall"
 	"time"
 
-	"bend-ingest-kafka/config"
+	bend_ingest_kafka "github.com/cnwangjie/bend-ingest-kafka"
+	"github.com/cnwangjie/bend-ingest-kafka/config"
 )
 
 var (
@@ -35,7 +35,7 @@ func main() {
 	}()
 
 	cfg := parseConfig()
-	ig := NewDatabendIngester(cfg)
+	ig := bend_ingest_kafka.NewDatabendIngester(cfg)
 	if !cfg.IsJsonTransform {
 		err := ig.CreateRawTargetTable()
 		if err != nil {
@@ -46,7 +46,7 @@ func main() {
 	wg := sync.WaitGroup{}
 	wg.Add(cfg.Workers)
 	for i := 0; i < cfg.Workers; i++ {
-		w := NewConsumeWorker(cfg, fmt.Sprintf("worker-%d", i), ig)
+		w := bend_ingest_kafka.NewConsumeWorker(cfg, fmt.Sprintf("worker-%d", i), ig)
 		go func() {
 			w.Run(ctx)
 			wg.Done()
@@ -86,12 +86,4 @@ func parseConfig() *config.Config {
 
 	flag.Parse()
 	return &cfg
-}
-
-func parseKafkaServers(kafkaServerStr string) []string {
-	kafkaServers := strings.Split(kafkaServerStr, ",")
-	if len(kafkaServers) == 0 {
-		panic("should have kafka servers")
-	}
-	return kafkaServers
 }

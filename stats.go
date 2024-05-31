@@ -1,4 +1,4 @@
-package main
+package bend_ingest_kafka
 
 import (
 	"sync"

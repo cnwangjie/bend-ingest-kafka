@@ -1,4 +1,4 @@
-module bend-ingest-kafka
+module github.com/cnwangjie/bend-ingest-kafka
 
 go 1.21
 

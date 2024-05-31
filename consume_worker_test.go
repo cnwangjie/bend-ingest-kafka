@@ -1,4 +1,4 @@
-package main
+package bend_ingest_kafka
 
 import (
 	"context"
@@ -14,7 +14,7 @@ import (
 	"github.com/segmentio/kafka-go"
 	"github.com/test-go/testify/assert"
 
-	"bend-ingest-kafka/config"
+	"github.com/cnwangjie/bend-ingest-kafka/config"
 )
 
 type consumeWorkerTest struct {
